@@ -10,7 +10,7 @@ public class PayPalAdapter implements PaymentProcessor {
     }
 
     @Override
-    public Map<String, Object> createOrder(double amount) throws Exception {
+    public Map<String, Object> createOrder(String userId, double amount) throws Exception {
         return payPalService.createOrder(amount);
     }
 
