@@ -19,10 +19,11 @@ public class PaymentKafkaConsumerService {
     @Autowired
     private PaymentProcessor paymentProcessor;
 
-    @KafkaListener(topics = "payment", groupId = "payment")
+    @KafkaListener(topics = "user-payment", groupId = "payment")
     public void listenToPayment(String message) {
         try {
             KafkaPaymentEvent event = objectMapper.readValue(message, KafkaPaymentEvent.class);
+            System.out.println("paymevfvfvdfvfvdfvdfvdf********" + event.getPaymentOrderId());
             processPayment(event);
         } catch (Exception e) {
             log.error("Error processing payment event", e);
