@@ -20,11 +20,13 @@ public class PaymentController {
     @Autowired
     private PaymentProcessor paymentProcessor;
 
-    @PostMapping("/new")
+    @PostMapping("/payment/new")
     public ResponseEntity<Map<String, Object>> createOrder(@RequestBody OrderRequest request) {
         Map<String, Object> response = new HashMap<>();
         try {
+            System.out.println(request.getUserId());
             Map<String, Object> result = paymentProcessor.createOrder(request.getUserId(), request.getAmount());
+
             response.put("success", true);
             response.put("order_id", result.get("id"));
             return new ResponseEntity<>(response, HttpStatus.OK);
